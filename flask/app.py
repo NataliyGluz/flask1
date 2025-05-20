@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template_string
+from flask import Flask, jsonify, request, render_template
 
 app = Flask(__name__)
 
@@ -28,7 +28,7 @@ def home():
 </body>
 </html>
 '''
-    return render_template_string(html, tasks=tasks)
+    return render_template(html, tasks=tasks)
 
 @app.route('/add', methods=['POST'])
 def add_task():
