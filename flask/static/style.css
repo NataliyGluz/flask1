@@ -1,29 +1,45 @@
+/* Загальні стилі */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f4f8;
     margin: 0;
+    padding: 0;
+}
+
+/* Контейнер, що центрує контент */
+.container {
+    max-width: 600px;
+    margin: auto;
     padding: 20px;
 }
 
+/* Заголовок */
 h1 {
     text-align: center;
     color: #333;
 }
 
+/* Форма додавання задач */
 form {
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
+/* Поле вводу */
 input[type="text"] {
-    padding: 8px;
-    width: 250px;
+    flex: 1 1 250px;
+    padding: 10px;
+    min-width: 150px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
+/* Кнопка додавання */
 input[type="submit"] {
-    padding: 8px 12px;
+    padding: 10px 16px;
     background-color: #007BFF;
     color: white;
     border: none;
@@ -35,13 +51,13 @@ input[type="submit"]:hover {
     background-color: #0056b3;
 }
 
+/* Список задач */
 ul {
     list-style-type: none;
     padding: 0;
-    max-width: 400px;
-    margin: 0 auto;
 }
 
+/* Окремий пункт задачі */
 li {
     background-color: white;
     margin-bottom: 10px;
@@ -51,13 +67,17 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    animation: fadeIn 0.4s ease forwards;
 }
 
+/* Посилання (видалення задачі) */
 a {
     color: red;
     text-decoration: none;
     font-weight: bold;
 }
+
+/* Анімація появи */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -69,9 +89,26 @@ a {
     }
 }
 
-li {
-    /* залишаємо існуючі стилі */
-    animation: fadeIn 0.4s ease forwards;
-}
+/* Адаптивність для мобільних пристроїв */
+@media (max-width: 600px) {
+    form {
+        flex-direction: column;
+        align-items: stretch;
+    }
 
+    input[type="text"],
+    input[type="submit"] {
+        width: 100%;
+    }
+
+    li {
+        font-size: 16px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    li a {
+        align-self: flex-end;
+    }
+}
 
