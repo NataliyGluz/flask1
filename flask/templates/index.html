@@ -1,21 +1,39 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="uk">
 <head>
+    <meta charset="UTF-8">
     <title>Todo List</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+  <div class="container">
     <h1>Todo List</h1>
+
     <form action="/add" method="POST">
-        <input type="text" name="task" placeholder="Enter a new task">
-        <input type="submit" value="Add Task">
+        <input type="text" name="task" placeholder="Введіть нове завдання" required>
+        <input type="submit" value="Додати">
     </form>
+
     <ul>
         {% for task in tasks %}
-        <li>{{ task }} <a href="#" onclick="confirmDelete({{ loop.index0 }})">x</a></li>
+        <li>
+            {{ task }}
+            <a href="#" onclick="confirmDelete({{ loop.index0 }})">x</a>
+        </li>
+        {% else %}
+        <li>Завдань поки що немає.</li>
         {% endfor %}
     </ul>
+  </div>
+
+  <script>
+    function confirmDelete(index) {
+        const confirmAction = confirm("Ви справді хочете видалити це завдання?");
+        if (confirmAction) {
+            window.location.href = "/delete/" + index;
+        }
+    }
+  </script>
 </body>
 </html>
-
